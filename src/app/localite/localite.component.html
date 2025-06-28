@@ -1,0 +1,16 @@
+<div class="search-container">
+  <input
+    type="text"
+    placeholder="Rechercher une localité..."
+    [(ngModel)]="searchTerm"
+    (input)="onSearch()"
+  />
+</div>
+
+<div class="localites-grid">
+  <div class="localite-card" *ngFor="let localite of filteredLocalites">
+    <h3>{{ localite.nom }}</h3>
+    <p>Type : {{ localite.typeLocalite }}</p>
+    <p>Coordonnées GPS : {{ localite.coordonneesGPS }}</p>
+  </div>
+</div>

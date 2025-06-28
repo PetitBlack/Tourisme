@@ -1,0 +1,50 @@
+.search-container {
+  margin: 1rem 0;
+  text-align: center;
+}
+
+.search-container input {
+  width: 80%;
+  max-width: 400px;
+  padding: 0.6rem 1rem;
+  font-size: 1rem;
+  border-radius: 25px;
+  border: 1px solid #ccc;
+  transition: box-shadow 0.3s ease;
+}
+
+.search-container input:focus {
+  outline: none;
+  box-shadow: 0 0 5px #4a90e2;
+  border-color: #4a90e2;
+}
+
+.localites-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+  padding: 0 1rem 2rem 1rem;
+}
+
+.localite-card {
+  background: white;
+  padding: 1rem 1.2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgb(0 0 0 / 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+.localite-card:hover {
+  box-shadow: 0 8px 16px rgb(0 0 0 / 0.15);
+}
+
+.localite-card h3 {
+  margin: 0 0 0.5rem 0;
+  color: #2c3e50;
+}
+
+.localite-card p {
+  margin: 0.3rem 0;
+  color: #555;
+  font-size: 0.9rem;
+}

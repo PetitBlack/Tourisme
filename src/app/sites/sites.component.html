@@ -1,0 +1,16 @@
+<div class="search-container">
+  <input
+    type="text"
+    placeholder="Rechercher par nom ou description..."
+    [(ngModel)]="searchTerm"
+    (input)="onSearch()"
+  />
+</div>
+
+<div class="sites-grid">
+  <div class="site-card" *ngFor="let site of filteredSites">
+    <h3>{{ site.nom }}</h3>
+    <p>{{ site.description }}</p>
+    <span class="badge">{{ site.typeSite }}</span>
+  </div>
+</div>

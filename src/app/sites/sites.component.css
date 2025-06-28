@@ -1,0 +1,70 @@
+.sites-container {
+  padding: 1rem;
+}
+
+.search-bar {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.search-bar input {
+  width: 80%;
+  max-width: 400px;
+  padding: 0.7rem 1rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  transition: border 0.3s;
+}
+
+.search-bar input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.sites-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.site-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s;
+}
+
+.site-card:hover {
+  transform: translateY(-5px);
+}
+
+.site-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.site-content {
+  padding: 1rem;
+}
+
+.site-content h3 {
+  margin: 0 0 0.5rem;
+}
+
+.site-content .description {
+  color: #555;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.site-content .badge {
+  display: inline-block;
+  background-color: #007bff;
+  color: white;
+  border-radius: 12px;
+  padding: 0.2rem 0.6rem;
+  font-size: 0.8rem;
+}
