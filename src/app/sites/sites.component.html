@@ -1,16 +1,20 @@
-<div class="search-container">
-  <input
-    type="text"
-    placeholder="Rechercher par nom ou description..."
-    [(ngModel)]="searchTerm"
-    (input)="onSearch()"
-  />
-</div>
-
-<div class="sites-grid">
-  <div class="site-card" *ngFor="let site of filteredSites">
-    <h3>{{ site.nom }}</h3>
-    <p>{{ site.description }}</p>
-    <span class="badge">{{ site.typeSite }}</span>
+<div class="container">
+  <h2>Sites Touristiques au Burkina Faso</h2>
+  <div class="search-bar">
+    <input type="text" [(ngModel)]="searchTerm" (input)="onSearch()" placeholder="Rechercher par nom, description, type ou localité...">
+  </div>
+  <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+  <div *ngIf="filteredSites.length === 0 && !errorMessage">Aucun site trouvé.</div>
+  <div class="site-list">
+    <div *ngFor="let site of filteredSites" class="site-card">
+      <h3>{{ site.nom }}</h3>
+      <p>{{ site.description }}</p>
+      <p><strong>Type :</strong> {{ site.typeSite }}</p>
+      <p><strong>Localité :</strong> {{ site.localiteNom || 'Non spécifiée' }}</p>
+      <p><strong>Coordonnées GPS :</strong> {{ site.coordonneesGPS }}</p>
+      <p><strong>Accessible PMR :</strong> {{ site.accessibleMobiliteReduite }}</p>
+      <p><strong>Date de disponibilité :</strong> {{ site.dateDisponibilite }}</p>
+      <img *ngIf="site.photoUrl" [src]="site.photoUrl" alt="{{ site.nom }}" style="max-width: 200px;">
+    </div>
   </div>
 </div>

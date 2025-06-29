@@ -10,7 +10,9 @@
 <div class="localites-grid">
   <div class="localite-card" *ngFor="let localite of filteredLocalites">
     <h3>{{ localite.nom }}</h3>
-    <p>Type : {{ localite.typeLocalite }}</p>
+    <p>Région : {{ localite.region }}</p>
+    <p>Population : {{ localite.population }}</p>
+    <p>Superficie : {{ localite.superficie }}</p>
     <p>Coordonnées GPS : {{ localite.coordonneesGPS }}</p>
   </div>
 </div>

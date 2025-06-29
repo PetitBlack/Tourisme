@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ApiService } from '../services/api.service';
+import { SiteTouristique } from '../models/site.model';
 
 @Component({
   selector: 'app-sites',
@@ -11,30 +12,42 @@ import { ApiService } from '../services/api.service';
   styleUrls: ['./sites.component.css'],
 })
 export class SitesComponent implements OnInit {
-  searchTerm = '';
-  sites: any[] = [];
-  filteredSites: any[] = [];
+  searchTerm: string = '';
+  sites: SiteTouristique[] = [];
+  filteredSites: SiteTouristique[] = [];
+  errorMessage: string | null = null;
 
   constructor(private apiService: ApiService) {}
+  ngOnInit(): void {
+    throw new Error('Method not implemented.');
+  }
 
-  ngOnInit() {
+  ngOninit(): void {
     this.apiService.getSites().subscribe({
-      next: (data) => {
-        console.log('Sites reçus:', data);  // <-- Ajouté ici
-        this.sites = data;
-        this.filteredSites = data;
+      next: (data: SiteTouristique[]) => {
+        console.log('Sites reçus:', data);
+        this.sites = data || [];
+        this.filteredSites = data || [];
+        this.errorMessage = null;
       },
       error: (err) => {
-        console.error('Erreur chargement sites', err);  // <-- Ajouté ici
+        console.error('Erreur lors du chargement des sites:', err);
+        this.errorMessage = 'Impossible de charger les sites touristiques. Veuillez vérifier la connexion à l\'API.';
       }
     });
   }
 
-  onSearch() {
-    const term = this.searchTerm.toLowerCase();
+  onSearch(): void {
+    const term = this.searchTerm.toLowerCase().trim();
+    if (!term) {
+      this.filteredSites = [...this.sites];
+      return;
+    }
     this.filteredSites = this.sites.filter(site =>
-      site.nom.toLowerCase().includes(term) ||
-      site.description.toLowerCase().includes(term)
+      (site.nom?.toLowerCase()?.includes(term) || '') ||
+      (site.description?.toLowerCase()?.includes(term) || '') ||
+      (site.typeSite?.toLowerCase()?.includes(term) || '') ||
+      (site.localiteNom?.toLowerCase()?.includes(term) || '')
     );
   }
 }

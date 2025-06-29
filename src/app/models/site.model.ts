@@ -1,11 +1,11 @@
-export interface Site {
+export interface SiteTouristique {
   nom: string;
   description: string;
   typeSite: string;
-  statut: string;
-  periodeRecommandee: string;
-  accessibilite: string;
-  localiteNom?: string;
-  coordonneesGPS?: string;
-  activites?: string[];
+  photoUrl: string;
+  coordonneesGPS: string;
+  accessibleMobiliteReduite: string;
+  dateDisponibilite: string;
+  localiteNom?: string; // Optionnel, car retourné par l'API avec SITUE_DANS
+  localiteCoordonneesGPS?: string; // Optionnel
 }

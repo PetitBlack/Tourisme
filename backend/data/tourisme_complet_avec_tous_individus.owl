@@ -1,0 +1,470 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.tourisme-burkina-ontologie.org/ontologie#"
+     xml:base="http://www.tourisme-burkina-ontologie.org/ontologie"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <owl:Ontology rdf:about="http://www.tourisme-burkina-ontologie.org/ontologie"/>
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+    -->
+
+    <!-- http://www.tourisme-burkina-ontologie.org/ontologie#contient -->
+    <owl:ObjectProperty rdf:about="http://www.tourisme-burkina-ontologie.org/ontologie#contient">
+        <owl:inverseOf rdf:resource="http://www.tourisme-burkina-ontologie.org/ontologie#estLocaliseDans"/>
+        <rdfs:domain rdf:resource="http://www.tourisme-burkina-ontologie.org/ontologie#Localite"/>
+        <rdfs:range rdf:resource="http://www.tourisme-burkina-ontologie.org/ontologie#SiteTouristique"/>
+    </owl:ObjectProperty>
+
+    <!-- http://www.tourisme-burkina-ontologie.org/ontologie#estLocaliseDans -->
+    <owl:ObjectProperty rdf:about="http://www.tourisme-burkina-ontologie.org/ontologie#estLocaliseDans">
+        <rdfs:domain rdf:resource="http://www.tourisme-burkina-ontologie.org/ontologie#SiteTouristique"/>
+        <rdfs:range rdf:resource="http://www.tourisme-burkina-ontologie.org/ontologie#Localite"/>
+    </owl:ObjectProperty>
+
+    <!-- http://www.tourisme-burkina-ontologie.org/ontologie#estProposeeA -->
+    <owl:ObjectProperty rdf:about="http://www.tourisme-burkina-ontologie.org/ontologie#estProposeeA">
+        <owl:inverseOf rdf:resource="http://www.tourisme-burkina-ontologie.org/ontologie#propose"/>
+        <rdfs:domain rdf:resource="http://www.tourisme-burkina-ontologie.org/ontologie#Activite"/>
+        <rdfs:range rdf:resource="http://www.tourisme-burkina-ontologie.org/ontologie#SiteTouristique"/>
+    </owl:ObjectProperty>
+
+    <!-- http://www.tourisme-burkina-ontologie.org/ontologie#estRepresenteSur -->
+    <owl:ObjectProperty rdf:about="http://www.tourisme-burkina-ontologie.org/ontologie#estRepresenteSur">
+        <owl:inverseOf rdf:resource="http://www.tourisme-burkina-ontologie.org/ontologie#represente"/>
+        <rdfs:domain rdf:resource="http://www.tourisme-burkina-ontologie.org/ontologie#SiteTouristique"/>
+        <rdfs:range rdf:resource="http://www.tourisme-burkina-ontologie.org/ontologie#CarteSpatiale"/>
+    </owl:ObjectProperty>
+
+    <!-- http://www.tourisme-burkina-ontologie.org/ontologie#propose -->
+    <owl:ObjectProperty rdf:about="http://www.tourisme-burkina-ontologie.org/ontologie#propose">
+        <rdfs:domain rdf:resource="http://www.tourisme-burkina-ontologie.org/ontologie#SiteTouristique"/>
+        <rdfs:range rdf:resource="http://www.tourisme-burkina-ontologie.org/ontologie#Activite"/>
+    </owl:ObjectProperty>
+
+    <!-- http://www.tourisme-burkina-ontologie.org/ontologie#represente -->
+    <owl:ObjectProperty rdf:about="http://www.tourisme-burkina-ontologie.org/ontologie#represente">
+        <rdfs:domain rdf:resource="http://www.tourisme-burkina-ontologie.org/ontologie#CarteSpatiale"/>
+        <rdfs:range rdf:resource="http://www.tourisme-burkina-ontologie.org/ontologie#SiteTouristique"/>
+    </owl:ObjectProperty>
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+    -->
+
+    <!-- http://www.tourisme-burkina-ontologie.org/ontologie#accessibilite -->
+    <owl:DatatypeProperty rdf:about="http://www.tourisme-burkina-ontologie.org/ontologie#accessibilite">
+        <rdfs:domain rdf:resource="http://www.tourisme-burkina-ontologie.org/ontologie#SiteTouristique"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+
+    <!-- http://www.tourisme-burkina-ontologie.org/ontologie#coordonneeGPS -->
+    <owl:DatatypeProperty rdf:about="http://www.tourisme-burkina-ontologie.org/ontologie#coordonneeGPS">
+        <rdfs:domain rdf:resource="http://www.tourisme-burkina-ontologie.org/ontologie#Localite"/>
+        <rdfs:domain rdf:resource="http://www.tourisme-burkina-ontologie.org/ontologie#SiteTouristique"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+
+    <!-- http://www.tourisme-burkina-ontologie.org/ontologie#description -->
+    <owl:DatatypeProperty rdf:about="http://www.tourisme-burkina-ontologie.org/ontologie#description">
+        <rdfs:domain rdf:resource="http://www.tourisme-burkina-ontologie.org/ontologie#Activite"/>
+        <rdfs:domain rdf:resource="http://www.tourisme-burkina-ontologie.org/ontologie#Localite"/>
+        <rdfs:domain rdf:resource="http://www.tourisme-burkina-ontologie.org/ontologie#SiteTouristique"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+
+    <!-- http://www.tourisme-burkina-ontologie.org/ontologie#duree -->
+    <owl:DatatypeProperty rdf:about="http://www.tourisme-burkina-ontologie.org/ontologie#duree">
+        <rdfs:domain rdf:resource="http://www.tourisme-burkina-ontologie.org/ontologie#Activite"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    </owl:DatatypeProperty>
+
+    <!-- http://www.tourisme-burkina-ontologie.org/ontologie#echelle -->
+    <owl:DatatypeProperty rdf:about="http://www.tourisme-burkina-ontologie.org/ontologie#echelle">
+        <rdfs:domain rdf:resource="http://www.tourisme-burkina-ontologie.org/ontologie#CarteSpatiale"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+
+    <!-- http://www.tourisme-burkina-ontologie.org/ontologie#format -->
+    <owl:DatatypeProperty rdf:about="http://www.tourisme-burkina-ontologie.org/ontologie#format">
+        <rdfs:domain rdf:resource="http://www.tourisme-burkina-ontologie.org/ontologie#CarteSpatiale"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+
+    <!-- http://www.tourisme-burkina-ontologie.org/ontologie#frequence -->
+    <owl:DatatypeProperty rdf:about="http://www.tourisme-burkina-ontologie.org/ontologie#frequence">
+        <rdfs:domain rdf:resource="http://www.tourisme-burkina-ontologie.org/ontologie#Activite"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+
+    <!-- http://www.tourisme-burkina-ontologie.org/ontologie#lieu -->
+    <owl:DatatypeProperty rdf:about="http://www.tourisme-burkina-ontologie.org/ontologie#lieu">
+        <rdfs:domain rdf:resource="http://www.tourisme-burkina-ontologie.org/ontologie#Activite"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+
+    <!-- http://www.tourisme-burkina-ontologie.org/ontologie#nom -->
+    <owl:DatatypeProperty rdf:about="http://www.tourisme-burkina-ontologie.org/ontologie#nom">
+        <rdfs:domain rdf:resource="http://www.tourisme-burkina-ontologie.org/ontologie#Activite"/>
+        <rdfs:domain rdf:resource="http://www.tourisme-burkina-ontologie.org/ontologie#CarteSpatiale"/>
+        <rdfs:domain rdf:resource="http://www.tourisme-burkina-ontologie.org/ontologie#Localite"/>
+        <rdfs:domain rdf:resource="http://www.tourisme-burkina-ontologie.org/ontologie#SiteTouristique"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+
+    <!-- http://www.tourisme-burkina-ontologie.org/ontologie#periodeRecommande -->
+    <owl:DatatypeProperty rdf:about="http://www.tourisme-burkina-ontologie.org/ontologie#periodeRecommande">
+        <rdfs:domain rdf:resource="http://www.tourisme-burkina-ontologie.org/ontologie#SiteTouristique"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    </owl:DatatypeProperty>
+
+    <!-- http://www.tourisme-burkina-ontologie.org/ontologie#photo -->
+    <owl:DatatypeProperty rdf:about="http://www.tourisme-burkina-ontologie.org/ontologie#photo">
+        <rdfs:domain rdf:resource="http://www.tourisme-burkina-ontologie.org/ontologie#SiteTouristique"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+
+    <!-- http://www.tourisme-burkina-ontologie.org/ontologie#population -->
+    <owl:DatatypeProperty rdf:about="http://www.tourisme-burkina-ontologie.org/ontologie#population">
+        <rdfs:domain rdf:resource="http://www.tourisme-burkina-ontologie.org/ontologie#Localite"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    </owl:DatatypeProperty>
+
+    <!-- http://www.tourisme-burkina-ontologie.org/ontologie#region -->
+    <owl:DatatypeProperty rdf:about="http://www.tourisme-burkina-ontologie.org/ontologie#region">
+        <rdfs:domain rdf:resource="http://www.tourisme-burkina-ontologie.org/ontologie#Localite"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+
+    <!-- http://www.tourisme-burkina-ontologie.org/ontologie#statut -->
+    <owl:DatatypeProperty rdf:about="http://www.tourisme-burkina-ontologie.org/ontologie#statut">
+        <rdfs:domain rdf:resource="http://www.tourisme-burkina-ontologie.org/ontologie#SiteTouristique"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    </owl:DatatypeProperty>
+
+    <!-- http://www.tourisme-burkina-ontologie.org/ontologie#superficie -->
+    <owl:DatatypeProperty rdf:about="http://www.tourisme-burkina-ontologie.org/ontologie#superficie">
+        <rdfs:domain rdf:resource="http://www.tourisme-burkina-ontologie.org/ontologie#Localite"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+
+    <!-- http://www.tourisme-burkina-ontologie.org/ontologie#type -->
+    <owl:DatatypeProperty rdf:about="http://www.tourisme-burkina-ontologie.org/ontologie#type">
+        <rdfs:domain rdf:resource="http://www.tourisme-burkina-ontologie.org/ontologie#Activite"/>
+        <rdfs:domain rdf:resource="http://www.tourisme-burkina-ontologie.org/ontologie#SiteTouristique"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+    -->
+
+    <!-- http://www.tourisme-burkina-ontologie.org/ontologie#Activite -->
+    <owl:Class rdf:about="http://www.tourisme-burkina-ontologie.org/ontologie#Activite"/>
+
+    <!-- http://www.tourisme-burkina-ontologie.org/ontologie#CarteSpatiale -->
+    <owl:Class rdf:about="http://www.tourisme-burkina-ontologie.org/ontologie#CarteSpatiale"/>
+
+    <!-- http://www.tourisme-burkina-ontologie.org/ontologie#Localite -->
+    <owl:Class rdf:about="http://www.tourisme-burkina-ontologie.org/ontologie#Localite"/>
+
+    <!-- http://www.tourisme-burkina-ontologie.org/ontologie#SiteTouristique -->
+    <owl:Class rdf:about="http://www.tourisme-burkina-ontologie.org/ontologie#SiteTouristique"/>
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+    -->
+
+    <!-- Localités -->
+    <owl:NamedIndividual rdf:about="http://www.tourisme-burkina-ontologie.org/ontologie#loropeni">
+        <rdf:type rdf:resource="http://www.tourisme-burkina-ontologie.org/ontologie#Localite"/>
+        <nom rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Loropéni</nom>
+        <description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Loropéni est une commune rurale et le chef-lieu du département de Loropéni dans la province du Poni de la région Sud-Ouest au Burkina Faso</description>
+        <region rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sud_Ouest</region>
+        <population rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5188</population>
+        <coordonneeGPS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">10° 19′ 00″ nord, 3° 10′ 00″ ouest</coordonneeGPS>
+        <superficie rdf:datatype="http://www.w3.org/2001/XMLSchema#string">36,8 km²</superficie>
+        <contient rdf:resource="http://www.tourisme-burkina-ontologie.org/ontologie#ruines_loropeni"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://www.tourisme-burkina-ontologie.org/ontologie#bobo_dioulasso">
+        <rdf:type rdf:resource="http://www.tourisme-burkina-ontologie.org/ontologie#Localite"/>
+        <nom rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Bobo-Dioulasso</nom>
+        <description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Bobo-Dioulasso est la deuxième ville la plus peuplée du Burkina Faso après Ouagadougou</description>
+        <region rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Haut_Bassin</region>
+        <population rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">7238</population>
+        <coordonneeGPS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">11° 11′ 00″ nord, 4° 17′ 00″ ouest</coordonneeGPS>
+        <superficie rdf:datatype="http://www.w3.org/2001/XMLSchema#string">136,8 km²</superficie>
+        <contient rdf:resource="http://www.tourisme-burkina-ontologie.org/ontologie#princesse_guimbi_o"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://www.tourisme-burkina-ontologie.org/ontologie#banfora">
+        <rdf:type rdf:resource="http://www.tourisme-burkina-ontologie.org/ontologie#Localite"/>
+        <nom rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Banfora</nom>
+        <description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Banfora est une ville du sud-ouest du Burkina Faso fondée en 1903</description>
+        <region rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cascades</region>
+        <population rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">167251</population>
+        <coordonneeGPS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">10° 36′ nord, 4° 45′ ouest</coordonneeGPS>
+        <superficie rdf:datatype="http://www.w3.org/2001/XMLSchema#string">934 km²</superficie>
+        <contient rdf:resource="http://www.tourisme-burkina-ontologie.org/ontologie#cascades_banfora"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://www.tourisme-burkina-ontologie.org/ontologie#sabou">
+        <rdf:type rdf:resource="http://www.tourisme-burkina-ontologie.org/ontologie#Localite"/>
+        <nom rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sabou</nom>
+        <description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sabou est un département du Burkina Faso située dans la province du Boulkiemdé et dans la région Centre-Ouest</description>
+        <region rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Centre_Ouest</region>
+        <population rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">45877</population>
+        <coordonneeGPS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">11° 45′ nord, 2° 15′ ouest</coordonneeGPS>
+        <superficie rdf:datatype="http://www.w3.org/2001/XMLSchema#string">456,1 km²</superficie>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://www.tourisme-burkina-ontologie.org/ontologie#ouagadougou">
+        <rdf:type rdf:resource="http://www.tourisme-burkina-ontologie.org/ontologie#Localite"/>
+        <nom rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ouagadougou</nom>
+        <description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ouagadougou est la capitale et la plus grande ville du Burkina Faso. C'est le centre culturel, économique et administratif du pays</description>
+        <region rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Centre</region>
+        <population rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2400000</population>
+        <coordonneeGPS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">12° 21′ 58″ nord, 1° 31′ 05″ ouest</coordonneeGPS>
+        <superficie rdf:datatype="http://www.w3.org/2001/XMLSchema#string">219,3 km²</superficie>
+    </owl:NamedIndividual>
+
+    <!-- Sites Touristiques -->
+    <owl:NamedIndividual rdf:about="http://www.tourisme-burkina-ontologie.org/ontologie#ruines_loropeni">
+        <rdf:type rdf:resource="http://www.tourisme-burkina-ontologie.org/ontologie#SiteTouristique"/>
+        <nom rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ruines de Loropéni</nom>
+        <description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Site archéologique classé UNESCO</description>
+        <type rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Site historique</type>
+        <photo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://www.ontb.bf/storage/sites/August2020/LhisBo32JAcJiobjwrQf.jpg</photo>
+        <coordonneeGPS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">10° 15′ nord, 3° 35′ ouest</coordonneeGPS>
+        <accessibilite rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Accessible aux personnes à mobilité réduite</accessibilite>
+        <statut rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</statut>
+        <periodeRecommande rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2025-01-01T00:00:00</periodeRecommande>
+        <estLocaliseDans rdf:resource="http://www.tourisme-burkina-ontologie.org/ontologie#loropeni"/>
+        <propose rdf:resource="http://www.tourisme-burkina-ontologie.org/ontologie#visite_ruines"/>
+        <estRepresenteSur rdf:resource="http://www.tourisme-burkina-ontologie.org/ontologie#carte_ruines_loropeni"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://www.tourisme-burkina-ontologie.org/ontologie#laongo">
+        <rdf:type rdf:resource="http://www.tourisme-burkina-ontologie.org/ontologie#SiteTouristique"/>
+        <nom rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Laongo</nom>
+        <description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Symposium de sculpture sur granit</description>
+        <type rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Site naturel</type>
+        <photo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://www.ontb.bf/storage/sites/August2020/GfBhRwK0n6KfNuOqcoo5.JPG</photo>
+        <coordonneeGPS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">12° 31′ 01″ nord, 1° 16′ 38″ ouest</coordonneeGPS>
+        <accessibilite rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Accessible aux personnes à mobilité réduite</accessibilite>
+        <statut rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</statut>
+        <periodeRecommande rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2025-01-01T00:00:00</periodeRecommande>
+        <estLocaliseDans rdf:resource="http://www.tourisme-burkina-ontologie.org/ontologie#ouagadougou"/>
+        <estRepresenteSur rdf:resource="http://www.tourisme-burkina-ontologie.org/ontologie#carte_laongo"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://www.tourisme-burkina-ontologie.org/ontologie#cascades_banfora">
+        <rdf:type rdf:resource="http://www.tourisme-burkina-ontologie.org/ontologie#SiteTouristique"/>
+        <nom rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cascades de Banfora</nom>
+        <description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Les cascades de Karfiguéla ou cascades de Banfora sont une série de cascades le long du fleuve Comoé au sud-ouest du Burkina Faso</description>
+        <type rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Site naturel</type>
+        <photo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://www.ontb.bf/storage/sites/August2020/ifS1QPghb4EoC1EwC3Ui.jpg</photo>
+        <coordonneeGPS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">10° 42′ 10″ nord, 4° 49′ 06″ ouest</coordonneeGPS>
+        <accessibilite rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Non accessible aux personnes à mobilité réduite</accessibilite>
+        <statut rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</statut>
+        <periodeRecommande rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2025-11-01T00:00:00</periodeRecommande>
+        <estLocaliseDans rdf:resource="http://www.tourisme-burkina-ontologie.org/ontologie#banfora"/>
+        <propose rdf:resource="http://www.tourisme-burkina-ontologie.org/ontologie#visite_karfiguela"/>
+        <propose rdf:resource="http://www.tourisme-burkina-ontologie.org/ontologie#visite_banfora"/>
+        <propose rdf:resource="http://www.tourisme-burkina-ontologie.org/ontologie#visite_tengrela"/>
+        <estRepresenteSur rdf:resource="http://www.tourisme-burkina-ontologie.org/ontologie#carte_cascades_banfora"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://www.tourisme-burkina-ontologie.org/ontologie#habitats_kassena_tiebele">
+        <rdf:type rdf:resource="http://www.tourisme-burkina-ontologie.org/ontologie#SiteTouristique"/>
+        <nom rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Habitats Kasséna de Tiébelé</nom>
+        <description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Les Kasséna appartiennent à l’ethnie Gourounsi. Dans le village de Tiébélé, les habitations ont conservé leur architecture traditionnelle</description>
+        <type rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Site historique</type>
+        <photo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://www.ontb.bf/storage/sites/August2020/igonG6iUmXbG8e4iQGee.jpg</photo>
+        <coordonneeGPS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">11° 05′ 49″ nord, 0° 57′ 51″ ouest</coordonneeGPS>
+        <accessibilite rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Accessible aux personnes à mobilité réduite</accessibilite>
+        <statut rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</statut>
+        <periodeRecommande rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2025-01-01T00:00:00</periodeRecommande>
+        <estRepresenteSur rdf:resource="http://www.tourisme-burkina-ontologie.org/ontologie#carte_habitats_kassena_tiebele"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://www.tourisme-burkina-ontologie.org/ontologie#princesse_guimbi_o">
+        <rdf:type rdf:resource="http://www.tourisme-burkina-ontologie.org/ontologie#SiteTouristique"/>
+        <nom rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Princesse Guimbi O.</nom>
+        <description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A Bobo-Dioulasso, elle jouissait d'une grande considération. Elle possédait des esclaves et gardait de nombreux combattants armés</description>
+        <type rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Site historique</type>
+        <photo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">https://www.ontb.bf/storage/sites/August2020/aEsqMrEXgRPdeH3snRTt.JPG</photo>
+        <coordonneeGPS rdf:datatype="http://www.w3.org/2001/XMLSchema#string">11° 11′ 00″ nord, 4° 17′ 00″ ouest</coordonneeGPS>
+        <accessibilite rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Accessible aux personnes à mobilité réduite</accessibilite>
+        <statut rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</statut>
+        <periodeRecommande rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2025-01-01T00:00:00</periodeRecommande>
+        <estLocaliseDans rdf:resource="http://www.tourisme-burkina-ontologie.org/ontologie#bobo_dioulasso"/>
+        <estRepresenteSur rdf:resource="http://www.tourisme-burkina-ontologie.org/ontologie#carte_princesse_guimbi_o"/>
+    </owl:NamedIndividual>
+
+    <!-- Activités -->
+    <owl:NamedIndividual rdf:about="http://www.tourisme-burkina-ontologie.org/ontologie#visite_ruines">
+        <rdf:type rdf:resource="http://www.tourisme-burkina-ontologie.org/ontologie#Activite"/>
+        <nom rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Visites des Ruines de Loropéni</nom>
+        <description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Vestiges en pierre classés au patrimoine mondial de l’UNESCO, témoignage des anciens royaumes commerçants.</description>
+        <type rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Culturelle</type>
+        <duree rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2025-04-10T02:00:00</duree>
+        <frequence rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Quotidienne</frequence>
+        <lieu rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Loropéni</lieu>
+        <estProposeeA rdf:resource="http://www.tourisme-burkina-ontologie.org/ontologie#ruines_loropeni"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://www.tourisme-burkina-ontologie.org/ontologie#visite_sindou">
+        <rdf:type rdf:resource="http://www.tourisme-burkina-ontologie.org/ontologie#Activite"/>
+        <nom rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Visites des Pics de Sindou</nom>
+        <description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Formations rocheuses spectaculaires offrant des paysages époustouflants et des couchers de soleil mémorables.</description>
+        <type rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Naturelle</type>
+        <duree rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2025-04-11T03:00:00</duree>
+        <frequence rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Quotidienne</frequence>
+        <lieu rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sindou</lieu>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://www.tourisme-burkina-ontologie.org/ontologie#visite_banfora">
+        <rdf:type rdf:resource="http://www.tourisme-burkina-ontologie.org/ontologie#Activite"/>
+        <nom rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Visites des Dômes de Fabédougou</nom>
+        <description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Massifs rocheux millénaires aux formes fascinantes, près de Banfora, parfaits pour la randonnée.</description>
+        <type rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Naturelle</type>
+        <duree rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2025-04-12T03:00:00</duree>
+        <frequence rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Quotidienne</frequence>
+        <lieu rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Banfora</lieu>
+        <estProposeeA rdf:resource="http://www.tourisme-burkina-ontologie.org/ontologie#cascades_banfora"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://www.tourisme-burkina-ontologie.org/ontologie#visite_karfiguela">
+        <rdf:type rdf:resource="http://www.tourisme-burkina-ontologie.org/ontologie#Activite"/>
+        <nom rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Visites des Cascades de Karfiguéla</nom>
+        <description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Magnifiques chutes d’eau dans un environnement verdoyant, idéales pour la baignade et la détente.</description>
+        <type rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Naturelle</type>
+        <duree rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2025-04-13T04:00:00</duree>
+        <frequence rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Quotidienne</frequence>
+        <lieu rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Karfiguéla, Banfora</lieu>
+        <estProposeeA rdf:resource="http://www.tourisme-burkina-ontologie.org/ontologie#cascades_banfora"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://www.tourisme-burkina-ontologie.org/ontologie#visite_sabou">
+        <rdf:type rdf:resource="http://www.tourisme-burkina-ontologie.org/ontologie#Activite"/>
+        <nom rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Visites du Lac Sacré de Sabou</nom>
+        <description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Plan d’eau où vivent des crocodiles sacrés protégés et nourris par les habitants selon les traditions.</description>
+        <type rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Culturelle</type>
+        <duree rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2025-04-14T02:00:00</duree>
+        <frequence rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Quotidienne</frequence>
+        <lieu rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sabou</lieu>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://www.tourisme-burkina-ontologie.org/ontologie#visite_w">
+        <rdf:type rdf:resource="http://www.tourisme-burkina-ontologie.org/ontologie#Activite"/>
+        <nom rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Visites du Parc National du W</nom>
+        <description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Réserve transfrontalière classée UNESCO, riche en faune : éléphants, buffles, lions, hippopotames.</description>
+        <type rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Naturelle</type>
+        <duree rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2025-04-15T06:00:00</duree>
+        <frequence rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Quotidienne</frequence>
+        <lieu rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sud-Est Burkina Faso</lieu>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://www.tourisme-burkina-ontologie.org/ontologie#visite_koudougou">
+        <rdf:type rdf:resource="http://www.tourisme-burkina-ontologie.org/ontologie#Activite"/>
+        <nom rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Visites du Musée de Manega</nom>
+        <description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">L’un des plus importants musées ethnographiques du Burkina Faso, avec masques, objets rituels, art africain.</description>
+        <type rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Culturelle</type>
+        <duree rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2025-04-16T02:00:00</duree>
+        <frequence rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Quotidienne</frequence>
+        <lieu rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Manega, Koudougou</lieu>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://www.tourisme-burkina-ontologie.org/ontologie#visite_tengrela">
+        <rdf:type rdf:resource="http://www.tourisme-burkina-ontologie.org/ontologie#Activite"/>
+        <nom rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Visites du Lac de Tengréla</nom>
+        <description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Plan d’eau près de Banfora où l’on peut observer des hippopotames et profiter d’une balade en pirogue.</description>
+        <type rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Naturelle</type>
+        <duree rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2025-04-17T03:00:00</duree>
+        <frequence rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Quotidienne</frequence>
+        <lieu rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Tengréla, Banfora</lieu>
+        <estProposeeA rdf:resource="http://www.tourisme-burkina-ontologie.org/ontologie#cascades_banfora"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://www.tourisme-burkina-ontologie.org/ontologie#visite_gaoua">
+        <rdf:type rdf:resource="http://www.tourisme-burkina-ontologie.org/ontologie#Activite"/>
+        <nom rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Visites du Musée des Civilisations de Gaoua</nom>
+        <description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Musée retraçant l’histoire et les traditions des peuples Lobi et Dagara du sud-ouest burkinabè.</description>
+        <type rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Culturelle</type>
+        <duree rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2025-04-18T02:00:00</duree>
+        <frequence rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Quotidienne</frequence>
+        <lieu rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Gaoua</lieu>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://www.tourisme-burkina-ontologie.org/ontologie#visite_ouagadougou">
+        <rdf:type rdf:resource="http://www.tourisme-burkina-ontologie.org/ontologie#Activite"/>
+        <nom rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Visites du Musée National du Burkina Faso</nom>
+        <description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Musée présentant la diversité culturelle du pays à travers des objets, masques et instruments de musique.</description>
+        <type rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Culturelle</type>
+        <duree rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2025-04-19T02:00:00</duree>
+        <frequence rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Quotidienne</frequence>
+        <lieu rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ouagadougou</lieu>
+    </owl:NamedIndividual>
+
+    <!-- Cartes Spatiales -->
+    <owl:NamedIndividual rdf:about="http://www.tourisme-burkina-ontologie.org/ontologie#carte_ruines_loropeni">
+        <rdf:type rdf:resource="http://www.tourisme-burkina-ontologie.org/ontologie#CarteSpatiale"/>
+        <nom rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ruines de Loropéni</nom>
+        <echelle rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1/5000</echelle>
+        <format rdf:datatype="http://www.w3.org/2001/XMLSchema#string">21 cm x 29,7 cm</format>
+        <represente rdf:resource="http://www.tourisme-burkina-ontologie.org/ontologie#ruines_loropeni"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://www.tourisme-burkina-ontologie.org/ontologie#carte_laongo">
+        <rdf:type rdf:resource="http://www.tourisme-burkina-ontologie.org/ontologie#CarteSpatiale"/>
+        <nom rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Laongo</nom>
+        <echelle rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1/5000</echelle>
+        <format rdf:datatype="http://www.w3.org/2001/XMLSchema#string">21 cm x 29,7 cm</format>
+        <represente rdf:resource="http://www.tourisme-burkina-ontologie.org/ontologie#laongo"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://www.tourisme-burkina-ontologie.org/ontologie#carte_habitats_kassena_tiebele">
+        <rdf:type rdf:resource="http://www.tourisme-burkina-ontologie.org/ontologie#CarteSpatiale"/>
+        <nom rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Habitats Kasséna de Tiébelé</nom>
+        <echelle rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1/5000</echelle>
+        <format rdf:datatype="http://www.w3.org/2001/XMLSchema#string">21 cm x 29,7 cm</format>
+        <represente rdf:resource="http://www.tourisme-burkina-ontologie.org/ontologie#habitats_kassena_tiebele"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://www.tourisme-burkina-ontologie.org/ontologie#carte_princesse_guimbi_o">
+        <rdf:type rdf:resource="http://www.tourisme-burkina-ontologie.org/ontologie#CarteSpatiale"/>
+        <nom rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Princesse Guimbi O.</nom>
+        <echelle rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1/5000</echelle>
+        <format rdf:datatype="http://www.w3.org/2001/XMLSchema#string">21 cm x 29,7 cm</format>
+        <represente rdf:resource="http://www.tourisme-burkina-ontologie.org/ontologie#princesse_guimbi_o"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://www.tourisme-burkina-ontologie.org/ontologie#carte_cascades_banfora">
+        <rdf:type rdf:resource="http://www.tourisme-burkina-ontologie.org/ontologie#CarteSpatiale"/>
+        <nom rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cascades de Banfora</nom>
+        <echelle rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1/5000</echelle>
+        <format rdf:datatype="http://www.w3.org/2001/XMLSchema#string">21 cm x 29,7 cm</format>
+        <represente rdf:resource="http://www.tourisme-burkina-ontologie.org/ontologie#cascades_banfora"/>
+    </owl:NamedIndividual>
+</rdf:RDF>

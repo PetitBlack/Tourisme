@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ApiService } from '../services/api.service';
+import { Localite } from '../models/localite.model';
 
 @Component({
   selector: 'app-localites',
@@ -12,8 +13,8 @@ import { ApiService } from '../services/api.service';
 })
 export class LocaliteComponent implements OnInit {
   searchTerm = '';
-  localites: any[] = [];
-  filteredLocalites: any[] = [];
+  localites: Localite[] = [];
+  filteredLocalites: Localite[] = [];
 
   constructor(private apiService: ApiService) {}
 
@@ -34,7 +35,7 @@ export class LocaliteComponent implements OnInit {
     const term = this.searchTerm.toLowerCase();
     this.filteredLocalites = this.localites.filter(localite =>
       localite.nom.toLowerCase().includes(term) ||
-      (localite.typeLocalite && localite.typeLocalite.toLowerCase().includes(term))
+      localite.region.toLowerCase().includes(term)
     );
   }
 }

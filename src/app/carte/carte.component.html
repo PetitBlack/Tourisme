@@ -1,1 +1,10 @@
-<div id="map" style="height: 600px;"></div>
+<div class="search-container">
+  <input
+    type="text"
+    placeholder="Rechercher un site touristique..."
+    [(ngModel)]="searchTerm"
+    (input)="onSearch()"
+  />
+</div>
+
+<div id="map" style="height: 600px; width: 100%; margin-top: 1rem;"></div>

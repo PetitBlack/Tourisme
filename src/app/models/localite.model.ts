@@ -1,5 +1,7 @@
 export interface Localite {
   nom: string;
-  typeLocalite: string;
+  region: string;
+  population: string;
   coordonneesGPS: string;
+  superficie: string;
 }
