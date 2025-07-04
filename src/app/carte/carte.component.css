@@ -1,41 +1,28 @@
-/* Container de la recherche */
-.search-container {
-  margin: 1rem;
-  text-align: center;
-}
-
-.search-container input[type="text"] {
-  width: 80%;
-  max-width: 400px;
-  padding: 0.5rem 1rem;
-  font-size: 1rem;
-  border: 2px solid #007bff;
-  border-radius: 4px;
-  outline: none;
-  transition: border-color 0.3s ease;
-}
-
-.search-container input[type="text"]:focus {
-  border-color: #0056b3;
-}
-
-/* Style de la div map */
 #map {
-  height: 600px; /* hauteur fixe */
+  height: 60vh;
   width: 100%;
-  border: 2px solid #007bff;
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-  margin: 0 auto 2rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
-/* Optionnel : style pour les popups Leaflet */
-.leaflet-popup-content-wrapper {
-  font-family: Arial, sans-serif;
-  font-size: 0.9rem;
-  color: #333;
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
 }
 
-.leaflet-popup-content-wrapper b {
+.search-bar input {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.map-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 0.8rem;
   color: #007bff;
 }

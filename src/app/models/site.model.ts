@@ -8,4 +8,5 @@ export interface SiteTouristique {
   dateDisponibilite: string;
   localiteNom?: string; // Optionnel, car retourné par l'API avec SITUE_DANS
   localiteCoordonneesGPS?: string; // Optionnel
+  flipped?: boolean;
 }

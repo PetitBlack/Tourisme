@@ -11,7 +11,7 @@ import { CarteSpatiale } from '../models/carte.model';
   providedIn: 'root'
 })
 export class ApiService {
-  private baseUrl = 'http://localhost:8080'; // Aligné avec le port de ton API FastAPI
+  private baseUrl = 'http://localhost:8000'; // Aligné avec le port de ton API FastAPI
 
   constructor(private http: HttpClient) { }
 

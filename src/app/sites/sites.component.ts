@@ -18,24 +18,25 @@ export class SitesComponent implements OnInit {
   errorMessage: string | null = null;
 
   constructor(private apiService: ApiService) {}
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
-  }
 
-  ngOninit(): void {
-    this.apiService.getSites().subscribe({
-      next: (data: SiteTouristique[]) => {
-        console.log('Sites reçus:', data);
-        this.sites = data || [];
-        this.filteredSites = data || [];
-        this.errorMessage = null;
-      },
-      error: (err) => {
-        console.error('Erreur lors du chargement des sites:', err);
-        this.errorMessage = 'Impossible de charger les sites touristiques. Veuillez vérifier la connexion à l\'API.';
-      }
-    });
-  }
+ngOnInit(): void {
+  this.apiService.getSites().subscribe({
+    next: (data: SiteTouristique[]) => {
+      this.sites = data.map(site => ({ ...site, flipped: false }));
+      this.filteredSites = [];
+      this.errorMessage = null;
+    },
+    error: (err) => {
+      console.error('Erreur lors du chargement des sites:', err);
+      this.errorMessage = 'Impossible de charger les sites touristiques. Vérifiez la connexion.';
+    }
+  });
+}
+
+
+toggleFlip(site: any): void {
+  site.flipped = !site.flipped;
+}
 
   onSearch(): void {
     const term = this.searchTerm.toLowerCase().trim();
