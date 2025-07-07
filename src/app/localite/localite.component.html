@@ -1,18 +1,13 @@
-<div class="search-container">
-  <input
-    type="text"
-    placeholder="Rechercher une localité..."
-    [(ngModel)]="searchTerm"
-    (input)="onSearch()"
-  />
-</div>
+<div *ngFor="let localite of filteredLocalites">
+  <h3>{{ localite.nom }}</h3>
+  <p><strong>Région :</strong> {{ localite.region }}</p>
 
-<div class="localites-grid">
-  <div class="localite-card" *ngFor="let localite of filteredLocalites">
-    <h3>{{ localite.nom }}</h3>
-    <p>Région : {{ localite.region }}</p>
-    <p>Population : {{ localite.population }}</p>
-    <p>Superficie : {{ localite.superficie }}</p>
-    <p>Coordonnées GPS : {{ localite.coordonneesGPS }}</p>
+  <div *ngIf="getSitesForLocalite(localite.nom).length > 0" class="sites-list">
+    <h4>Sites touristiques</h4>
+    <div *ngFor="let site of getSitesForLocalite(localite.nom)" class="site-card">
+      <img [src]="site.photo" [alt]="site.nom" />
+      <p>{{ site.nom }}</p>
+    </div>
   </div>
+  <p *ngIf="getSitesForLocalite(localite.nom).length === 0">Aucun site touristique disponible.</p>
 </div>

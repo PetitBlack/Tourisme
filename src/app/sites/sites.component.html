@@ -1,46 +1,61 @@
-<div class="container">
-  <h2>Sites Touristiques au Burkina Faso</h2>
+<div class="search-container">
+  <input
+    type="text"
+    placeholder="Rechercher un site..."
+    [(ngModel)]="searchTerm"
+    (input)="onSearch()"
+  />
+</div>
 
-  <div class="search-bar">
-    <input type="text"
-           [(ngModel)]="searchTerm"
-           (input)="onSearch()"
-           placeholder="Rechercher par nom, description, type ou localité...">
-  </div>
-
-  <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
-
-  <div *ngIf="filteredSites.length === 0 && !errorMessage">
-    Aucun site trouvé.
-  </div>
-
-  <div class="site-list">
-    <div *ngFor="let site of filteredSites"
-         class="flip-card"
-         (click)="toggleFlip(site)">
-      <div class="flip-card-inner" [class.flipped]="site.flipped">
-
-        <!-- Face avant -->
+<div *ngIf="displayMode === 'intro'" class="intro">
+  <h2>Bienvenue sur la plateforme touristique du Burkina Faso</h2>
+  <p>Découvrez la richesse culturelle, historique et naturelle du Burkina Faso à travers nos sites touristiques incontournables.</p>
+  
+  <div class="site-grid">
+    <div class="flip-card" *ngFor="let site of allSites" (click)="selectSite(site)">
+      <div class="flip-card-inner">
         <div class="flip-card-front">
-          <h3>{{ site.nom }}</h3>
-          <img *ngIf="site.photoUrl"
-               [src]="site.photoUrl"
-               alt="{{ site.nom }}"
-               class="site-photo">
+          <img [src]="site.photo" [alt]="site.nom" />
         </div>
-
-        <!-- Face arrière -->
         <div class="flip-card-back">
           <h3>{{ site.nom }}</h3>
-          <p>{{ site.description }}</p>
-          <p><strong>Type :</strong> {{ site.typeSite }}</p>
-          <p><strong>Localité :</strong> {{ site.localiteNom || 'Non spécifiée' }}</p>
-          <p><strong>Coordonnées GPS :</strong> {{ site.coordonneesGPS }}</p>
-          <p><strong>Accessible PMR :</strong> {{ site.accessibleMobiliteReduite }}</p>
-          <p><strong>Date de disponibilité :</strong> {{ site.dateDisponibilite }}</p>
         </div>
-
       </div>
     </div>
   </div>
+</div>
+
+<div *ngIf="displayMode === 'details'" class="details-mode">
+  <button class="back-btn" (click)="backToIntro()">← Retour</button>
+
+  <div *ngIf="selectedSite; else searchResults">
+    <h2>{{ selectedSite.nom }}</h2>
+    <img [src]="selectedSite.photo" [alt]="selectedSite.nom" class="site-image"/>
+    <div class="site-info">
+      <p>{{ selectedSite.description }}</p>
+      <p><strong>Type :</strong> {{ selectedSite.type }}</p>
+      <p><strong>Période recommandée :</strong> {{ selectedSite.periodeRecommande }}</p>
+      <p><strong>Accessibilité :</strong> {{ selectedSite.accessibilite }}</p>
+      <p><strong>Localité :</strong> {{ selectedSite.localiteNom }}</p>
+      <p><strong>Coordonnées :</strong> {{ selectedSite.coordonneeGPS }}</p>
+
+      <h3>Activités proposées :</h3>
+      <ul>
+        <li *ngFor="let act of siteActivities">
+          {{ act.nom }} ({{ act.type }}) - {{ act.frequence }}
+        </li>
+        <li *ngIf="siteActivities.length === 0">Aucune activité disponible.</li>
+      </ul>
+    </div>
+  </div>
+
+  <ng-template #searchResults>
+    <p>Résultats de la recherche :</p>
+    <ul class="search-results">
+      <li *ngFor="let site of filteredSites" (click)="selectSite(site)" tabindex="0">
+        {{ site.nom }} - {{ site.type }}
+      </li>
+      <li *ngIf="filteredSites.length === 0">Aucun site trouvé.</li>
+    </ul>
+  </ng-template>
 </div>

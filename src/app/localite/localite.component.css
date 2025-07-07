@@ -1,50 +1,72 @@
+.intro-text {
+  max-width: 800px;
+  margin: 1rem auto;
+  padding: 0 1rem;
+  text-align: center;
+}
+
 .search-container {
-  margin: 1rem 0;
+  max-width: 600px;
+  margin: 1rem auto 2rem;
   text-align: center;
 }
 
 .search-container input {
-  width: 80%;
-  max-width: 400px;
-  padding: 0.6rem 1rem;
-  font-size: 1rem;
-  border-radius: 25px;
+  width: 100%;
+  padding: 10px 15px;
+  font-size: 1.1rem;
+  border-radius: 8px;
   border: 1px solid #ccc;
-  transition: box-shadow 0.3s ease;
+  transition: border-color 0.3s ease;
 }
 
 .search-container input:focus {
   outline: none;
-  box-shadow: 0 0 5px #4a90e2;
-  border-color: #4a90e2;
+  border-color: #1e88e5;
+  box-shadow: 0 0 8px rgba(30, 136, 229, 0.5);
 }
 
 .localites-grid {
+  max-width: 900px;
+  margin: 0 auto 2rem;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1rem;
-  padding: 0 1rem 2rem 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
+  padding: 0 1rem;
 }
 
 .localite-card {
   background: white;
-  padding: 1rem 1.2rem;
-  border-radius: 12px;
+  border-radius: 10px;
+  padding: 1rem;
   box-shadow: 0 4px 8px rgb(0 0 0 / 0.1);
-  transition: box-shadow 0.3s ease;
-}
-
-.localite-card:hover {
-  box-shadow: 0 8px 16px rgb(0 0 0 / 0.15);
 }
 
 .localite-card h3 {
-  margin: 0 0 0.5rem 0;
-  color: #2c3e50;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
 }
 
-.localite-card p {
-  margin: 0.3rem 0;
-  color: #555;
+.sites-list {
+  margin-top: 1rem;
+}
+
+.site-card {
+  display: inline-block;
+  width: 100px;
+  margin-right: 10px;
+  text-align: center;
+}
+
+.site-card img {
+  width: 100%;
+  border-radius: 8px;
+  height: 70px;
+  object-fit: cover;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+.site-card p {
   font-size: 0.9rem;
+  margin-top: 0.3rem;
 }

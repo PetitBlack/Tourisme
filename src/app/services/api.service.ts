@@ -49,6 +49,11 @@ export class ApiService {
       catchError(this.handleError)
     );
   }
+getActivitesBySite(siteNom: string): Observable<Activite[]> {
+  return this.http.get<Activite[]>(`${this.baseUrl}/activites/site/${encodeURIComponent(siteNom)}`).pipe(
+    catchError(this.handleError)
+  );
+}
 
   // Récupérer toutes les activités
   getActivites(): Observable<Activite[]> {
@@ -56,6 +61,8 @@ export class ApiService {
       catchError(this.handleError)
     );
   }
+
+  
 
   // Récupérer les activités par lieu
   getActivitesByLieu(lieuNom: string): Observable<Activite[]> {

@@ -1,18 +1,12 @@
-<div class="container">
-  <h2>Carte des Sites Touristiques au Burkina Faso</h2>
-
-  <div class="search-bar">
-    <input type="text"
-           [(ngModel)]="searchTerm"
-           (input)="onSearch()"
-           placeholder="Rechercher par nom, description, type ou localité...">
-  </div>
-
-  <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
-
-  <div *ngIf="filteredSites.length === 1" class="map-title">
-    {{ filteredSites[0].nom }}
-  </div>
-
-  <div id="map"></div>
+<div class="search-container">
+  <input
+    type="text"
+    placeholder="Rechercher un site ou une localité..."
+    [(ngModel)]="searchTerm"
+    (input)="onSearch()"
+  />
 </div>
+
+<div id="map" style="height: 600px; margin-top: 1rem;"></div>
+
+<div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>

@@ -1,12 +1,11 @@
 export interface SiteTouristique {
   nom: string;
   description: string;
-  typeSite: string;
-  photoUrl: string;
-  coordonneesGPS: string;
-  accessibleMobiliteReduite: string;
-  dateDisponibilite: string;
-  localiteNom?: string; // Optionnel, car retourné par l'API avec SITUE_DANS
-  localiteCoordonneesGPS?: string; // Optionnel
-  flipped?: boolean;
+  type: string;                // correspond à Neo4j
+  photo: string;               // correspond à Neo4j
+  coordonneeGPS: string;       // correspond à Neo4j
+  accessibilite: string;       // correspond à Neo4j
+  periodeRecommande?: string;  // correspond à Neo4j
+  localiteNom?: string;
+  localiteCoordonneeGPS?: string;
 }

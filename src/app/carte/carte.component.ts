@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import * as L from 'leaflet';
 import { ApiService } from '../services/api.service';
 import { SiteTouristique } from '../models/site.model';
+import { Localite } from '../models/localite.model';
 
 @Component({
   selector: 'app-carte',
@@ -15,8 +16,9 @@ import { SiteTouristique } from '../models/site.model';
 export class CarteComponent implements AfterViewInit {
   searchTerm: string = '';
   allSites: SiteTouristique[] = [];
-  filteredSites: SiteTouristique[] = [];
+  allLocalites: Localite[] = [];
   errorMessage: string | null = null;
+
   private map!: L.Map;
   private markers: L.Marker[] = [];
 
@@ -26,15 +28,13 @@ export class CarteComponent implements AfterViewInit {
     this.initMap();
 
     this.apiService.getSites().subscribe({
-      next: (sites: SiteTouristique[]) => {
-        this.allSites = sites || [];
-        this.filteredSites = sites || [];
-        this.errorMessage = null;
-        this.onSearch(); // Met à jour la carte avec les sites chargés
-      },
-      error: (err) => {
-        this.errorMessage = "Impossible de charger les sites touristiques. Veuillez vérifier la connexion à l'API.";
-      }
+      next: (sites) => this.allSites = sites || [],
+      error: () => this.errorMessage = 'Erreur chargement des sites.'
+    });
+
+    this.apiService.getLocalites().subscribe({
+      next: (localites) => this.allLocalites = localites || [],
+      error: () => this.errorMessage = 'Erreur chargement des localités.'
     });
   }
 
@@ -44,7 +44,7 @@ export class CarteComponent implements AfterViewInit {
     }
 
     this.map = L.map('map', {
-      center: [12.3714, -1.5197],
+      center: [12.3714, -1.5197], // Centre Burkina Faso
       zoom: 6,
       maxBounds: [
         [9.0, -6.5],
@@ -56,70 +56,80 @@ export class CarteComponent implements AfterViewInit {
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '© OpenStreetMap contributors'
     }).addTo(this.map);
+
+    // Important pour corriger l'affichage de la carte
+    setTimeout(() => {
+      this.map.invalidateSize();
+    }, 100);
   }
 
   onSearch(): void {
+    this.clearMarkers();
+    this.errorMessage = null;
     const term = this.searchTerm.toLowerCase().trim();
+
     if (!term) {
-      this.filteredSites = [...this.allSites];
-      this.updateMarkers(this.filteredSites, false);
+      this.map.setView([12.3714, -1.5197], 6);
       return;
     }
-    this.filteredSites = this.allSites.filter(site =>
-      (site.nom?.toLowerCase().includes(term) || '') ||
-      (site.description?.toLowerCase().includes(term) || '') ||
-      (site.typeSite?.toLowerCase().includes(term) || '') ||
-      (site.localiteNom?.toLowerCase().includes(term) || '')
-    );
-    this.updateMarkers(this.filteredSites, this.filteredSites.length === 1);
+
+    // Recherche site touristique
+    const site = this.allSites.find(s => s.nom?.toLowerCase().includes(term));
+    if (site && site.coordonneeGPS) {
+      const coords = this.parseAnyCoordinates(site.coordonneeGPS);
+      if (coords) {
+        const [lat, lng] = coords;
+        const marker = L.marker([lat, lng])
+          .addTo(this.map)
+          .bindPopup(`<b>${site.nom}</b><br>${site.description || ''}`);
+        this.markers.push(marker);
+        this.map.setView([lat, lng], 13);
+        marker.openPopup();
+        return;
+      }
+    }
+
+    // Recherche localité
+    const localite = this.allLocalites.find(l => l.nom?.toLowerCase().includes(term));
+    if (localite && localite.coordonneeGPS) {
+      const coords = this.parseAnyCoordinates(localite.coordonneeGPS);
+      if (coords) {
+        const [lat, lng] = coords;
+        const marker = L.marker([lat, lng])
+          .addTo(this.map)
+          .bindPopup(`<b>Localité : ${localite.nom}</b>`);
+        this.markers.push(marker);
+        this.map.setView([lat, lng], 13);
+        marker.openPopup();
+        return;
+      }
+    }
+
+    this.errorMessage = "Aucun site ou localité correspondant trouvé.";
   }
 
-  private parseCoordinates(coord: string): [number, number] | null {
+  private clearMarkers(): void {
+    this.markers.forEach(marker => this.map.removeLayer(marker));
+    this.markers = [];
+  }
+
+  private parseAnyCoordinates(coord: string): [number, number] | null {
+    if (coord.includes(',')) {
+      const parts = coord.split(',').map(p => parseFloat(p.trim()));
+      if (parts.length === 2 && !isNaN(parts[0]) && !isNaN(parts[1])) {
+        return [parts[0], parts[1]];
+      }
+    }
+
     const regex = /(\d+)°\s*(\d+)′\s*(\d+)″\s*(nord|sud),\s*(\d+)°\s*(\d+)′\s*(\d+)″\s*(est|ouest)/i;
     const match = coord.match(regex);
     if (!match) return null;
+
     const [, degLat, minLat, secLat, dirLat, degLng, minLng, secLng, dirLng] = match;
     let lat = parseInt(degLat) + parseInt(minLat) / 60 + parseInt(secLat) / 3600;
     let lng = parseInt(degLng) + parseInt(minLng) / 60 + parseInt(secLng) / 3600;
     if (dirLat.toLowerCase() === 'sud') lat = -lat;
     if (dirLng.toLowerCase() === 'ouest') lng = -lng;
     return [lat, lng];
-  }
-
-  private updateMarkers(sites: SiteTouristique[], singleMarker: boolean = false): void {
-    this.markers.forEach(marker => this.map.removeLayer(marker));
-    this.markers = [];
-
-    if (sites.length === 0) return;
-
-    if (singleMarker) {
-      const site = sites[0];
-      if (site.coordonneesGPS) {
-        const coords = this.parseCoordinates(site.coordonneesGPS);
-        if (coords) {
-          const [lat, lng] = coords;
-          const marker = L.marker([lat, lng])
-            .addTo(this.map)
-            .bindPopup(`<b>${site.nom}</b><br>${site.description}`);
-          this.markers.push(marker);
-          this.map.setView([lat, lng], 13);
-          marker.openPopup();
-        }
-      }
-    } else {
-      sites.forEach(site => {
-        if (site.coordonneesGPS) {
-          const coords = this.parseCoordinates(site.coordonneesGPS);
-          if (coords) {
-            const [lat, lng] = coords;
-            const marker = L.marker([lat, lng])
-              .addTo(this.map)
-              .bindPopup(`<b>${site.nom}</b><br>${site.description}`);
-            this.markers.push(marker);
-          }
-        }
-      });
-      this.map.setView([12.3714, -1.5197], 6);
-    }
   }
 }

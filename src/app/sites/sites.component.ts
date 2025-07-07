@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 import { ApiService } from '../services/api.service';
 import { SiteTouristique } from '../models/site.model';
+import { Activite } from '../models/activite.model';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-sites',
@@ -12,43 +13,62 @@ import { SiteTouristique } from '../models/site.model';
   styleUrls: ['./sites.component.css'],
 })
 export class SitesComponent implements OnInit {
-  searchTerm: string = '';
-  sites: SiteTouristique[] = [];
+  allSites: SiteTouristique[] = [];
   filteredSites: SiteTouristique[] = [];
-  errorMessage: string | null = null;
+  selectedSite?: SiteTouristique;
+  siteActivities: Activite[] = [];
+  searchTerm = '';
+  displayMode: 'intro' | 'details' = 'intro';
 
   constructor(private apiService: ApiService) {}
 
-ngOnInit(): void {
-  this.apiService.getSites().subscribe({
-    next: (data: SiteTouristique[]) => {
-      this.sites = data.map(site => ({ ...site, flipped: false }));
-      this.filteredSites = [];
-      this.errorMessage = null;
-    },
-    error: (err) => {
-      console.error('Erreur lors du chargement des sites:', err);
-      this.errorMessage = 'Impossible de charger les sites touristiques. Vérifiez la connexion.';
-    }
-  });
-}
+  ngOnInit() {
+    this.apiService.getSites().subscribe({
+      next: (sites) => {
+        this.allSites = sites;
+        this.filteredSites = sites;
+      },
+      error: (err) => console.error(err),
+    });
+  }
 
+  onSearch() {
+    const term = this.searchTerm.trim().toLowerCase();
 
-toggleFlip(site: any): void {
-  site.flipped = !site.flipped;
-}
-
-  onSearch(): void {
-    const term = this.searchTerm.toLowerCase().trim();
-    if (!term) {
-      this.filteredSites = [...this.sites];
+    if (term.length === 0) {
+      this.displayMode = 'intro';
+      this.filteredSites = this.allSites;
+      this.selectedSite = undefined;
+      this.siteActivities = [];
       return;
     }
-    this.filteredSites = this.sites.filter(site =>
-      (site.nom?.toLowerCase()?.includes(term) || '') ||
-      (site.description?.toLowerCase()?.includes(term) || '') ||
-      (site.typeSite?.toLowerCase()?.includes(term) || '') ||
-      (site.localiteNom?.toLowerCase()?.includes(term) || '')
+
+    this.filteredSites = this.allSites.filter(site =>
+      site.nom?.toLowerCase().includes(term) ||
+      site.description?.toLowerCase().includes(term) ||
+      site.type?.toLowerCase().includes(term) ||
+      site.localiteNom?.toLowerCase().includes(term) ||
+      site.accessibilite?.toLowerCase().includes(term)
     );
+
+    this.displayMode = 'details';
+    this.selectedSite = undefined;
+    this.siteActivities = [];
+  }
+
+  selectSite(site: SiteTouristique) {
+    this.selectedSite = site;
+    this.apiService.getActivitesBySite(site.nom).subscribe({
+      next: (acts) => this.siteActivities = acts,
+      error: () => this.siteActivities = [],
+    });
+  }
+
+  backToIntro() {
+    this.displayMode = 'intro';
+    this.searchTerm = '';
+    this.filteredSites = this.allSites;
+    this.selectedSite = undefined;
+    this.siteActivities = [];
   }
 }
